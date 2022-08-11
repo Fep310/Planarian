@@ -17,4 +17,17 @@ public class ChapterEvent : ScriptableObject
 
     [SerializeField] private ChapterTrigger onEndEvent;
     public ChapterTrigger OnEndEvent { get => onEndEvent; }
+
+    [Space]
+
+    [SerializeField] private EventOutcome eventOutcome;
+
+    /*
+    [SerializeField] private Sprite sprite;
+    [SerializeField] private List<string> texts;
+    [SerializeField] private string sound;
+    [SerializeField] private string music;
+    */
+
+    //public EventOutcome
 }

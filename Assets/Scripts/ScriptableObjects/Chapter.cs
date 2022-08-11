@@ -13,7 +13,12 @@ public class Chapter : ScriptableObject
     [SerializeField] private List<ChapterEvent> events;
     public List<ChapterEvent> Events { get => events; }
 
-    public ChapterEvent OnEventEnd(string trigger) {
+    public ChapterEvent BeginChapter()
+    {
+        return GetChapterEvent(onBeginChapter.Key);
+    }
+
+    public ChapterEvent GetChapterEvent(string trigger) {
         
         var nextPossibleEvents = new List<ChapterEvent>(); 
 

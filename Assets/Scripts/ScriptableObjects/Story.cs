@@ -9,8 +9,9 @@ public class Story : ScriptableObject
 
     private int currentChapter;
 
-    public void Init() {
+    public Chapter Init() {
         currentChapter = 0;
+        return chapters[currentChapter];
     }
 
     public Chapter GetNextChapter() {
