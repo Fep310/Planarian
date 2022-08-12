@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New ChapterEvent Asset", menuName = "Planarian Assets/Chapter/Event")]
+[CreateAssetMenu(fileName = "New ChapterEvent Asset", menuName = "Story/Chapter/New Event")]
 public class ChapterEvent : ScriptableObject
 {
     [SerializeField] private string key;
@@ -20,14 +20,6 @@ public class ChapterEvent : ScriptableObject
 
     [Space]
 
-    [SerializeField] private EventOutcome eventOutcome;
-
-    /*
-    [SerializeField] private Sprite sprite;
-    [SerializeField] private List<string> texts;
-    [SerializeField] private string sound;
-    [SerializeField] private string music;
-    */
-
-    //public EventOutcome
+    [SerializeField] private EventTransitionData eventOutcome;
+    public EventTransitionData TransitionData { get => eventOutcome; }
 }

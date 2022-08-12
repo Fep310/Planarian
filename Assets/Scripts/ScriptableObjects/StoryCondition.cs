@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New StoryCondition Asset", menuName = "Planarian Assets/Condition")]
+[CreateAssetMenu(fileName = "New Chapter Asset", menuName = "Story/New Condition")]
 public class StoryCondition : ScriptableObject
 {
     [SerializeField] private string key;

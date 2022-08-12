@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+[CreateAssetMenu(fileName = "New Chapter Asset", menuName = "Story/Chapter/New Chapter")]
 public class Chapter : ScriptableObject
 {
     [SerializeField] private string key;
