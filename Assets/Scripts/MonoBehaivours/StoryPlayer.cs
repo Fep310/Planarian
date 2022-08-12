@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StoryPlayer : MonoBehaviour
+public class StoryPlayer : InitializableMonoBehaviour
 {
     [SerializeField] private Story story;
     [Space]
@@ -36,7 +36,7 @@ public class StoryPlayer : MonoBehaviour
         alternativeChosenNumber = number;
     }
 
-    private void Start()
+    public override void Init()
     {
         currentChapter = story.Init();
         currentEvent = currentChapter.BeginChapter();
@@ -48,9 +48,6 @@ public class StoryPlayer : MonoBehaviour
     {
         while (currentEvent != null)
         {
-            Debug.Log("----------------------------------------");
-            Debug.Log("currentEvent in not null!");
-
             currentTransitionData = currentEvent.TransitionData;
 
             if (currentTransitionData.Sprite != null)
@@ -64,21 +61,15 @@ public class StoryPlayer : MonoBehaviour
             while (!Input.GetKeyDown(KeyCode.Space)) 
                 yield return null;
 
-            Debug.Log("player pressed space");
-
             string onEndEventKey;
 
             if (currentEvent is ChapterQuestionEvent questionEvent)
             {
-                Debug.Log("currentEvent is question");
-
                 questionDisplayer.gameObject.SetActive(true);
                 questionDisplayer.Display(questionEvent.Alternatives);
 
                 while (!playerChoseAlternativeThisFrame)
                     yield return null;
-
-                Debug.Log($"an alternative has been chosen, alternativeNumber: {alternativeChosenNumber}");
 
                 playerChoseAlternativeThisFrame = false;
 
@@ -86,15 +77,13 @@ public class StoryPlayer : MonoBehaviour
             }
             else
             {
-                Debug.Log("currentEvent is not a question");
-
                 onEndEventKey = currentEvent.OnEndEvent.Key;
             }
 
             currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
         }
 
-        Debug.Log("currentEvent is now null"); // TODO: Implement finishing chapter
+        // TODO: Implement finishing chapter
     }
 
     private IEnumerator FadeNewSpriteInCo()

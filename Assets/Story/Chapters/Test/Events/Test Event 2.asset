@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: EVENT_2
   triggeredBy: {fileID: 11400000, guid: b70a7dd651a388a4a94338c13b9fe487, type: 2}
-  onEndEvent: {fileID: 0}
+  onEndEvent: {fileID: 11400000, guid: 0116f5951462cd2428de76935ee6555d, type: 2}
   eventConditions: []
   eventOutcome:
     Sprite: {fileID: 0}

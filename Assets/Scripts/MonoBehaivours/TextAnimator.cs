@@ -5,6 +5,8 @@ using UnityEngine;
 public class TextAnimator : MonoBehaviour
 {
     [SerializeField] private TMPro.TextMeshProUGUI textComp;
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private SoundEffect letterSfx;
 
     public IEnumerator AnimateTextCo(string newText, float charIntervalInSec)
     {
@@ -14,6 +16,9 @@ public class TextAnimator : MonoBehaviour
 
         foreach (var c in newText)
         {
+            if (char.IsLetterOrDigit(c))
+                soundManager.PlaySoundEffect(letterSfx);
+
             textComp.text += c;
             yield return waitInterval;
         }
