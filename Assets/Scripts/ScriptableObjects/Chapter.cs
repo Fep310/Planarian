@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Chapter Asset", menuName = "Story/Chapter/New Chapter")]
+[CreateAssetMenu(fileName = "New Chapter", menuName = "Story/Chapter/New Chapter")]
 public class Chapter : ScriptableObject
 {
     [SerializeField] private string key;
@@ -30,10 +30,15 @@ public class Chapter : ScriptableObject
 
                 bool allConditionsMet = true;
 
-                foreach (var condition in evt.EventConditions) {
-                    if (!condition.IsConditionMet()) {
-                        allConditionsMet = false;
-                        break;
+                if (evt.EventConditions.Count > 1)
+                {
+                    foreach (var condition in evt.EventConditions)
+                    {
+                        if (!condition.IsConditionMet())
+                        {
+                            allConditionsMet = false;
+                            break;
+                        }
                     }
                 }
 

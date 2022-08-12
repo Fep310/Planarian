@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New ChapterQuestionEvent Asset", menuName = "Story/Chapter/New Question Event")]
+[CreateAssetMenu(fileName = "New ChapterQuestionEvent", menuName = "Story/Chapter/New Question Event")]
 public class ChapterQuestionEvent : ChapterEvent
 {
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Story Asset", menuName = "Story/New Story")]
+[CreateAssetMenu(fileName = "New Story", menuName = "Story/New Story")]
 public class Story : ScriptableObject
 {
     [SerializeField] private List<Chapter> chapters;

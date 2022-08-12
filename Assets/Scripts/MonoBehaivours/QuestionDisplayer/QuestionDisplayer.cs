@@ -21,7 +21,10 @@ public class QuestionDisplayer : MonoBehaviour
     public void Display(List<QuestionAlternative> alternatives)
     {
         for (int i = 0; i < alternatives.Count; i++)
+        {
             alternativeButtons[i].gameObject.SetActive(true);
+            alternativeButtons[i].SetText(alternatives[i].label);
+        }
     }
 
     public void Close()

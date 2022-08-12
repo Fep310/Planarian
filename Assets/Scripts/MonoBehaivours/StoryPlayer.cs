@@ -40,7 +40,6 @@ public class StoryPlayer : MonoBehaviour
     {
         currentChapter = story.Init();
         currentEvent = currentChapter.BeginChapter();
-        currentTransitionData = currentEvent.TransitionData;
 
         StartCoroutine(HandleChapterEventsCo());
     }
@@ -49,24 +48,37 @@ public class StoryPlayer : MonoBehaviour
     {
         while (currentEvent != null)
         {
+            Debug.Log("----------------------------------------");
+            Debug.Log("currentEvent in not null!");
+
+            currentTransitionData = currentEvent.TransitionData;
+
             if (currentTransitionData.Sprite != null)
                 yield return StartCoroutine(FadeNewSpriteInCo());
 
             if (currentTransitionData.Texts != null || currentTransitionData.Texts.Count > 1)
                 yield return StartCoroutine(ShowTextCo());
 
-            while (!Input.GetKeyDown(KeyCode.Space))
+            // TODO: show indicator
+
+            while (!Input.GetKeyDown(KeyCode.Space)) 
                 yield return null;
+
+            Debug.Log("player pressed space");
 
             string onEndEventKey;
 
             if (currentEvent is ChapterQuestionEvent questionEvent)
             {
+                Debug.Log("currentEvent is question");
+
                 questionDisplayer.gameObject.SetActive(true);
                 questionDisplayer.Display(questionEvent.Alternatives);
 
                 while (!playerChoseAlternativeThisFrame)
                     yield return null;
+
+                Debug.Log($"an alternative has been chosen, alternativeNumber: {alternativeChosenNumber}");
 
                 playerChoseAlternativeThisFrame = false;
 
@@ -74,12 +86,15 @@ public class StoryPlayer : MonoBehaviour
             }
             else
             {
+                Debug.Log("currentEvent is not a question");
+
                 onEndEventKey = currentEvent.OnEndEvent.Key;
             }
 
             currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
         }
 
+        Debug.Log("currentEvent is now null"); // TODO: Implement finishing chapter
     }
 
     private IEnumerator FadeNewSpriteInCo()
@@ -89,9 +104,11 @@ public class StoryPlayer : MonoBehaviour
 
     private IEnumerator ShowTextCo()
     {
+        // TODO: Player skip text
+
         foreach (var text in currentTransitionData.Texts)
         {
-            yield return StartCoroutine(textAnimator.AnimateTextCo(text, .1f));
+            yield return StartCoroutine(textAnimator.AnimateTextCo(text, .06f));
 
             while (!Input.GetKeyDown(KeyCode.Space))
                 yield return null;

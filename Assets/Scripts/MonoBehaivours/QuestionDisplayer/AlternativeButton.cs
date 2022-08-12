@@ -18,17 +18,24 @@ public class AlternativeButton : Selectable
      *  OnMouseClick()
      */
 
+    // TODO: Can't navigate with keyboard
+
     [SerializeField] private Image background;
-    [SerializeField] private TMPro.TextMeshProUGUI text;
+    [SerializeField] private TMPro.TextMeshProUGUI textMeshPro;
     [SerializeField] private int alternativeNumber;
 
     public Action<int> onChoose;
 
+    public void SetText(string newText)
+    {
+        textMeshPro.text = newText;
+    }
+
     public void SetState(bool b)
     {
         background.color = b ? Color.white : Color.black;
-        text.color = b ? Color.black : Color.white;
-        text.fontStyle = b ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
+        textMeshPro.color = b ? Color.black : Color.white;
+        textMeshPro.fontStyle = b ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
     }
 
     public void Choose()

@@ -10,6 +10,8 @@ public class TextAnimator : MonoBehaviour
     {
         var waitInterval = new WaitForSeconds(charIntervalInSec);
 
+        textComp.text = string.Empty;
+
         foreach (var c in newText)
         {
             textComp.text += c;

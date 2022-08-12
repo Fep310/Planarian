@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36d9240ee22b247479d06fc33b6c4bda, type: 3}
-  m_Name: Main Story
+  m_Script: {fileID: 11500000, guid: 68b090ed1ad60cd4ca43657f8adbd5bc, type: 3}
+  m_Name: Question Trigger
   m_EditorClassIdentifier: 
-  chapters:
-  - {fileID: 11400000, guid: a2613769cc25a354daff971ae472bdd5, type: 2}
-  values: []
+  key: TRIGGER_question
