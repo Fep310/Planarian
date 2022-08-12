@@ -9,10 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f42a3f18a7f8b14eaa23ad10711b27e, type: 3}
-  m_Name: MoneyForRD Condition
+  m_Script: {fileID: 11500000, guid: 3df13bbe90de61c468ebba15a9798ca8, type: 3}
+  m_Name: Monologue Chapter
   m_EditorClassIdentifier: 
-  key: COND_buy_rubber_duck
-  valueRef: {fileID: 11400000, guid: 135c0e0c6fcc1f749b1e9f01da9d9d89, type: 2}
-  condition: 2
-  neededValue: 4
+  key: CHA_monologue
+  onBeginChapter: {fileID: 0}
+  events: []

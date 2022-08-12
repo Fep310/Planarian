@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class StoryPlayer : MonoBehaviour
 {
-    [SerializeField] private Image imageComp;
-    [SerializeField] private TMPro.TextMeshPro textComp;
     [SerializeField] private ImageFader imageFader;
     [SerializeField] private TextAnimator textAnimator;
     [Space]
     [SerializeField] private Story story;
+
+    public bool playerChoseAlternativeThisFrame;
+    public int alternativeChosenId;
 
     private Chapter currentChapter;
     private ChapterEvent currentEvent;
@@ -18,12 +19,6 @@ public class StoryPlayer : MonoBehaviour
 
     private void Start()
     {
-        if (imageComp == null || textComp == null || story == null)
-        {
-            Debug.LogError("Components not assigned on StoryPlayer.");
-            return;
-        }
-
         currentChapter = story.Init();
         currentEvent = currentChapter.BeginChapter();
         currentTransitionData = currentEvent.TransitionData;
@@ -44,7 +39,24 @@ public class StoryPlayer : MonoBehaviour
             while (!Input.GetKeyDown(KeyCode.Space))
                 yield return null;
 
-            string onEndEventKey = currentEvent.OnEndEvent.Key;
+            string onEndEventKey;
+
+            if (currentEvent is ChapterQuestionEvent questionEvent)
+            {
+                // TODO: Display alternatives (create QuestionDisplayer)
+
+                while (!playerChoseAlternativeThisFrame)
+                    yield return null;
+
+                playerChoseAlternativeThisFrame = false;
+
+                onEndEventKey = questionEvent.Alternatives[alternativeChosenId].onChoose.Key;
+            }
+            else
+            {
+                onEndEventKey = currentEvent.OnEndEvent.Key;
+            }
+
             currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
         }
 
@@ -60,6 +72,9 @@ public class StoryPlayer : MonoBehaviour
         foreach (var text in currentTransitionData.Texts)
         {
             yield return StartCoroutine(textAnimator.AnimateTextCo(text, .1f));
+
+            while (!Input.GetKeyDown(KeyCode.Space))
+                yield return null;
         }
     }
 }
