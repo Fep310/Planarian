@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   key: 
   triggeredBy: {fileID: 0}
-  eventConditions: []
+  eventConditions:
+  - {fileID: 0}
   onEndEvent: {fileID: 0}
   eventOutcome:
     Sprite: {fileID: 0}
@@ -22,4 +23,8 @@ MonoBehaviour:
     Texts: []
     Sound: 
     Music: 
-  alternatives: []
+  alternatives:
+  - label: 
+    onChoose: {fileID: 0}
+  - label: 
+    onChoose: {fileID: 0}

@@ -5,17 +5,36 @@ using UnityEngine.UI;
 
 public class StoryPlayer : MonoBehaviour
 {
+    [SerializeField] private Story story;
+    [Space]
     [SerializeField] private ImageFader imageFader;
     [SerializeField] private TextAnimator textAnimator;
-    [Space]
-    [SerializeField] private Story story;
+    [SerializeField] private QuestionDisplayer questionDisplayer;
 
-    public bool playerChoseAlternativeThisFrame;
-    public int alternativeChosenId;
+    [HideInInspector] public bool playerChoseAlternativeThisFrame;
+    [HideInInspector] public int alternativeChosenNumber;
 
     private Chapter currentChapter;
     private ChapterEvent currentEvent;
     private EventTransitionData currentTransitionData;
+
+    private void OnEnable()
+    {
+        foreach (var btn in questionDisplayer.alternativeButtons)
+            btn.onChoose += (i) => SetChosenAlternative(i);
+    }
+
+    private void OnDisable()
+    {
+        foreach (var btn in questionDisplayer.alternativeButtons)
+            btn.onChoose -= (i) => SetChosenAlternative(i);
+    }
+
+    private void SetChosenAlternative(int number)
+    {
+        playerChoseAlternativeThisFrame = true;
+        alternativeChosenNumber = number;
+    }
 
     private void Start()
     {
@@ -43,14 +62,15 @@ public class StoryPlayer : MonoBehaviour
 
             if (currentEvent is ChapterQuestionEvent questionEvent)
             {
-                // TODO: Display alternatives (create QuestionDisplayer)
+                questionDisplayer.gameObject.SetActive(true);
+                questionDisplayer.Display(questionEvent.Alternatives);
 
                 while (!playerChoseAlternativeThisFrame)
                     yield return null;
 
                 playerChoseAlternativeThisFrame = false;
 
-                onEndEventKey = questionEvent.Alternatives[alternativeChosenId].onChoose.Key;
+                onEndEventKey = questionEvent.Alternatives[alternativeChosenNumber].onChoose.Key;
             }
             else
             {

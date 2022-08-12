@@ -6,12 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New ChapterQuestionEvent Asset", menuName = "Story/Chapter/New Question Event")]
 public class ChapterQuestionEvent : ChapterEvent
 {
-    [System.Serializable]
-    public struct QuestionAlternative
-    {
-        public string label;
-        public ChapterTrigger onChoose;
-    }
 
     [SerializeField] private List<QuestionAlternative> alternatives;
     public List<QuestionAlternative> Alternatives { get => alternatives; }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TextAnimator : MonoBehaviour
 {
-    [SerializeField] private TMPro.TextMeshPro textComp;
+    [SerializeField] private TMPro.TextMeshProUGUI textComp;
 
     public IEnumerator AnimateTextCo(string newText, float charIntervalInSec)
     {
