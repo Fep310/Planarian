@@ -5,6 +5,8 @@ using UnityEngine;
 public class QuestionDisplayer : MonoBehaviour
 {
     public List<AlternativeButton> alternativeButtons;
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private SoundEffect chooseAlternativeSfx;
 
     private void OnEnable()
     {
@@ -30,6 +32,7 @@ public class QuestionDisplayer : MonoBehaviour
     public void Close()
     {
         alternativeButtons.ForEach(b => b.gameObject.SetActive(false));
+        soundManager.PlaySoundEffect(chooseAlternativeSfx);
         gameObject.SetActive(false);
     }
 }

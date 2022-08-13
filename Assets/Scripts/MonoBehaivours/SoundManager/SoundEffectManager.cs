@@ -25,6 +25,7 @@ public class SoundEffectManager : MonoBehaviour
     {
         var nextSource = sourcesQueue.Dequeue();
 
+        nextSource.pitch = 1;
         nextSource.PlayOneShot(soundEffect.Clip, soundEffect.DefaultVolume);
 
         sourcesQueue.Enqueue(nextSource);
@@ -34,8 +35,19 @@ public class SoundEffectManager : MonoBehaviour
     {
         var nextSource = sourcesQueue.Dequeue();
 
+        nextSource.pitch = 1;
         nextSource.PlayOneShot(soundEffect.Clip, volume);
         
+        sourcesQueue.Enqueue(nextSource);
+    }
+
+    public void PlayRandPitch(SoundEffect soundEffect, float volume, float minPitch, float maxPitch)
+    {
+        var nextSource = sourcesQueue.Dequeue();
+
+        nextSource.pitch = Random.Range(minPitch, maxPitch);
+        nextSource.PlayOneShot(soundEffect.Clip, volume);
+
         sourcesQueue.Enqueue(nextSource);
     }
 }

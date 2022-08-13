@@ -229,6 +229,8 @@ MonoBehaviour:
   - {fileID: 810577772}
   - {fileID: 653280930}
   - {fileID: 1609065644}
+  soundManager: {fileID: 703852000}
+  chooseAlternativeSfx: {fileID: 11400000, guid: c18905f7fcd0e7c4eabb5f1510d5cdb0, type: 2}
 --- !u!114 &215078758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,8 +848,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -877,6 +879,8 @@ MonoBehaviour:
   background: {fileID: 653280931}
   textMeshPro: {fileID: 1319064793}
   alternativeNumber: 1
+  soundManager: {fileID: 703852000}
+  hoverAlternativeSfx: {fileID: 11400000, guid: 98dac3e2144b9bf44b7da2f7b07506d8, type: 2}
 --- !u!114 &653280931
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1209,8 +1213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1240,6 +1244,8 @@ MonoBehaviour:
   background: {fileID: 810577769}
   textMeshPro: {fileID: 1519632621}
   alternativeNumber: 0
+  soundManager: {fileID: 703852000}
+  hoverAlternativeSfx: {fileID: 11400000, guid: 98dac3e2144b9bf44b7da2f7b07506d8, type: 2}
 --- !u!1 &998452704
 GameObject:
   m_ObjectHideFlags: 0
@@ -1966,8 +1972,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1997,6 +2003,8 @@ MonoBehaviour:
   background: {fileID: 1609065645}
   textMeshPro: {fileID: 496717469}
   alternativeNumber: 2
+  soundManager: {fileID: 703852000}
+  hoverAlternativeSfx: {fileID: 11400000, guid: 98dac3e2144b9bf44b7da2f7b07506d8, type: 2}
 --- !u!114 &1609065645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2070,6 +2078,8 @@ MonoBehaviour:
   questionDisplayer: {fileID: 215078757}
   screenFader: {fileID: 586207887}
   dialogueArrow: {fileID: 2057688409}
+  soundManager: {fileID: 703852000}
+  nextTextSfx: {fileID: 11400000, guid: 744e51ecf3584ae4a89d3c70804c065c, type: 2}
   playerChoseAlternativeThisFrame: 0
   alternativeChosenNumber: 0
 --- !u!4 &1667472227
@@ -2176,7 +2186,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0.38900003}
   m_AnchoredPosition: {x: 0.0009765625, y: 0}
-  m_SizeDelta: {x: -348.57, y: -159.99998}
+  m_SizeDelta: {x: -397.74, y: -160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1853279285
 MonoBehaviour:

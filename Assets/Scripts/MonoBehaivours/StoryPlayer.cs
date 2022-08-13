@@ -12,6 +12,9 @@ public class StoryPlayer : InitializableMonoBehaviour
     [SerializeField] private QuestionDisplayer questionDisplayer;
     [SerializeField] private ScreenFader screenFader;
     [SerializeField] private DialogueArrow dialogueArrow;
+    [Space]
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private SoundEffect nextTextSfx;
 
     [HideInInspector] public bool playerChoseAlternativeThisFrame;
     [HideInInspector] public int alternativeChosenNumber;
@@ -81,6 +84,7 @@ public class StoryPlayer : InitializableMonoBehaviour
                 yield return null;
 
             dialogueArrow.Toggle(false);
+            soundManager.PlaySoundEffect(nextTextSfx);
 
             string onEndEventKey;
 
@@ -118,6 +122,8 @@ public class StoryPlayer : InitializableMonoBehaviour
     {
         foreach (var text in currentTransitionData.Texts)
         {
+            yield return new WaitForSeconds(.33f);
+
             textAnimator.AnimateText(text, DEFAULT_CHAR_INTERVAL);
             
             while (textAnimator.IsAnimating)

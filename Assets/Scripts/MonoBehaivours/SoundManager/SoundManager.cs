@@ -22,4 +22,11 @@ public class SoundManager : InitializableMonoBehaviour
     {
         sfxManager.Play(soundEffect, volume);
     }
+
+    public void PlaySoundEffectRandPitch(SoundEffect soundEffect, float volume, float maxPitch, float minPitch)
+    {
+        sfxManager.PlayRandPitch(soundEffect, volume, maxPitch, minPitch);
+    }
+
+    public void PlaySoundtrack() { }
 }

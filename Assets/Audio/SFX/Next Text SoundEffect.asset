@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0629bf3f54290394e8724890110e41fa, type: 3}
-  m_Name: Generic Letter SoundEffect
+  m_Name: Next Text SoundEffect
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 29f22eab9b6b30444a017913beb7e5fa, type: 3}
+  clip: {fileID: 8300000, guid: b9ed746b9a2a6c34293302d0b240c31a, type: 3}
   defaultVolume: 0.7

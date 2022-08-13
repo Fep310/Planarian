@@ -23,6 +23,8 @@ public class AlternativeButton : Selectable
     [SerializeField] private Image background;
     [SerializeField] private TMPro.TextMeshProUGUI textMeshPro;
     [SerializeField] private int alternativeNumber;
+    [SerializeField] private SoundManager soundManager;
+    [SerializeField] private SoundEffect hoverAlternativeSfx;
 
     public Action<int> onChoose;
 
@@ -36,6 +38,10 @@ public class AlternativeButton : Selectable
         background.color = b ? Color.white : Color.black;
         textMeshPro.color = b ? Color.black : Color.white;
         textMeshPro.fontStyle = b ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
+
+        // TODO: Pitch based on how impactful is alternative
+        if (b)
+            soundManager.PlaySoundEffectRandPitch(hoverAlternativeSfx, hoverAlternativeSfx.DefaultVolume, .8f, 1.2f);
     }
 
     public void Choose()
