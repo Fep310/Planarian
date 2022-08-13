@@ -17,8 +17,8 @@ MonoBehaviour:
   onEndEvent: {fileID: 11400000, guid: da7238116a7841042b3e1dc81cd39ec5, type: 2}
   eventConditions: []
   eventOutcome:
-    Sprite: {fileID: 0}
-    FadeInTime: 0
+    Sprite: {fileID: 21300000, guid: ff51949c4352b4349935ddc166100d17, type: 3}
+    FadeInTime: 0.5
     Texts:
     - This is event 1.
     Sound: 

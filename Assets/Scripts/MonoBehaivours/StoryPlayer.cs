@@ -10,6 +10,8 @@ public class StoryPlayer : InitializableMonoBehaviour
     [SerializeField] private ImageFader imageFader;
     [SerializeField] private TextAnimator textAnimator;
     [SerializeField] private QuestionDisplayer questionDisplayer;
+    [SerializeField] private ScreenFader screenFader;
+    [SerializeField] private DialogueArrow dialogueArrow;
 
     [HideInInspector] public bool playerChoseAlternativeThisFrame;
     [HideInInspector] public int alternativeChosenNumber;
@@ -17,6 +19,9 @@ public class StoryPlayer : InitializableMonoBehaviour
     private Chapter currentChapter;
     private ChapterEvent currentEvent;
     private EventTransitionData currentTransitionData;
+
+    private const float FADE_OUT_DURATION = 1;
+    private const float DEFAULT_CHAR_INTERVAL = .04f;
 
     private void OnEnable()
     {
@@ -40,26 +45,42 @@ public class StoryPlayer : InitializableMonoBehaviour
     {
         currentChapter = story.Init();
         currentEvent = currentChapter.BeginChapter();
+        textAnimator.ResetText();
+        screenFader.Init();
 
         StartCoroutine(HandleChapterEventsCo());
     }
 
+    private bool CanContinueEvent() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
+
     private IEnumerator HandleChapterEventsCo()
     {
+        // TODO: Chapter introduction
+
+        yield return new WaitForSeconds(.5f);
+
+        yield return StartCoroutine(screenFader.FadeCo(true, FADE_OUT_DURATION));
+
         while (currentEvent != null)
         {
             currentTransitionData = currentEvent.TransitionData;
 
             if (currentTransitionData.Sprite != null)
+            {
                 yield return StartCoroutine(FadeNewSpriteInCo());
+            }
 
             if (currentTransitionData.Texts != null || currentTransitionData.Texts.Count > 1)
+            {
                 yield return StartCoroutine(ShowTextCo());
+            }
 
-            // TODO: show indicator
+            dialogueArrow.Toggle(true);
 
-            while (!Input.GetKeyDown(KeyCode.Space)) 
+            while (!CanContinueEvent())
                 yield return null;
+
+            dialogueArrow.Toggle(false);
 
             string onEndEventKey;
 
@@ -83,6 +104,8 @@ public class StoryPlayer : InitializableMonoBehaviour
             currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
         }
 
+        yield return StartCoroutine(screenFader.FadeCo(false, FADE_OUT_DURATION));
+
         // TODO: Implement finishing chapter
     }
 
@@ -93,14 +116,14 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     private IEnumerator ShowTextCo()
     {
-        // TODO: Player skip text
-
         foreach (var text in currentTransitionData.Texts)
         {
-            yield return StartCoroutine(textAnimator.AnimateTextCo(text, .06f));
-
-            while (!Input.GetKeyDown(KeyCode.Space))
+            textAnimator.AnimateText(text, DEFAULT_CHAR_INTERVAL);
+            
+            while (textAnimator.IsAnimating)
                 yield return null;
+
+            yield return null; // If we don't wait for another frame, the CanContinueEvent() returns true the same frame!
         }
     }
 }
