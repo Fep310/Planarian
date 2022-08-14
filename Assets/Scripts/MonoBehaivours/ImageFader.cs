@@ -13,6 +13,7 @@ public class ImageFader : MonoBehaviour
     public IEnumerator FadeNewImageCo(Sprite newSprite, float fadeTime)
     {
         backImage.sprite = frontImage.sprite;
+        backImage.color = Color.white;
         frontImage.sprite = newSprite;
         frontImage.color = transparent;
 

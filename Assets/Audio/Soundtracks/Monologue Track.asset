@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0629bf3f54290394e8724890110e41fa, type: 3}
-  m_Name: Generic Character SoundEffect
+  m_Script: {fileID: 11500000, guid: 3fecc79f72d05e84b84cab85b5e2c9cc, type: 3}
+  m_Name: Monologue Track
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 29f22eab9b6b30444a017913beb7e5fa, type: 3}
+  clip: {fileID: 8300000, guid: f656383d1fe1eb745be01049ee4ad5dd, type: 3}
   defaultVolume: 0.5
+  fadesIn: 1
+  fadeInDuration: 4

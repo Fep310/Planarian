@@ -10,7 +10,6 @@ public class SoundManager : InitializableMonoBehaviour
     public override void Init()
     {
         sfxManager.Init();
-        soundtrackManager.Init();
     }
 
     public void PlaySoundEffect(SoundEffect soundEffect)
@@ -28,5 +27,24 @@ public class SoundManager : InitializableMonoBehaviour
         sfxManager.PlayRandPitch(soundEffect, volume, maxPitch, minPitch);
     }
 
-    public void PlaySoundtrack() { }
+    public void PlaySoundtrack(Soundtrack soundtrack, bool loop)
+    {
+        if (loop)
+            soundtrackManager.PlayAndLoop(soundtrack);
+        else
+            soundtrackManager.Play(soundtrack);
+    }
+
+    public void EnqueueSoundtrack(Soundtrack soundtrack, bool loop)
+    {
+        if (loop)
+            soundtrackManager.EnqueueAndLoop(soundtrack);
+        else
+            soundtrackManager.Enqueue(soundtrack);
+    }
+
+    public void StopSoundtrack(float fadeOutTime = 0)
+    {
+        soundtrackManager.Stop(fadeOutTime);
+    }
 }

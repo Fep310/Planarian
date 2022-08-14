@@ -44,7 +44,7 @@ public class TextAnimator : MonoBehaviour
             yield return waitInterval;
 
             if (char.IsLetterOrDigit(c))
-                soundManager.PlaySoundEffect(letterSfx);
+                soundManager.PlaySoundEffectRandPitch(letterSfx, letterSfx.DefaultVolume, .9f, 1.1f);
 
             textComp.text += c;
         }

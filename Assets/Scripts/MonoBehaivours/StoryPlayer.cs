@@ -21,10 +21,11 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     private Chapter currentChapter;
     private ChapterEvent currentEvent;
-    private EventTransitionData currentTransitionData;
+    private EventTransitionData currentEventData;
 
-    private const float FADE_OUT_DURATION = 1;
-    private const float DEFAULT_CHAR_INTERVAL = .04f;
+    private const float FADE_IN_DURATION = 3;
+    private const float FADE_OUT_DURATION = 3;
+    private const float DEFAULT_CHAR_INTERVAL = .1f;
 
     private void OnEnable()
     {
@@ -62,29 +63,33 @@ public class StoryPlayer : InitializableMonoBehaviour
 
         yield return new WaitForSeconds(.5f);
 
-        yield return StartCoroutine(screenFader.FadeCo(true, FADE_OUT_DURATION));
+        yield return StartCoroutine(screenFader.FadeCo(true, FADE_IN_DURATION));
 
-        while (currentEvent != null)
+        while (true)
         {
-            currentTransitionData = currentEvent.TransitionData;
+            currentEventData = currentEvent.TransitionData;
 
-            if (currentTransitionData.Sprite != null)
+            if (currentEventData.Sound != null)
+                soundManager.PlaySoundEffect(currentEventData.Sound);
+
+            if (currentEventData.Track != null)
             {
+                if (currentEventData.ShouldEnqueueTrack)
+                    soundManager.EnqueueSoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
+                else
+                    soundManager.PlaySoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
+            }
+
+            if (currentEventData.Sprite != null)
                 yield return StartCoroutine(FadeNewSpriteInCo());
-            }
 
-            if (currentTransitionData.Texts != null || currentTransitionData.Texts.Count > 1)
-            {
+            if (currentEventData.ImageWaitTime > 0)
+                yield return new WaitForSeconds(currentEventData.ImageWaitTime);
+
+            if (currentEventData.Texts != null || currentEventData.Texts.Count > 1)
                 yield return StartCoroutine(ShowTextCo());
-            }
 
-            dialogueArrow.Toggle(true);
-
-            while (!CanContinueEvent())
-                yield return null;
-
-            dialogueArrow.Toggle(false);
-            soundManager.PlaySoundEffect(nextTextSfx);
+            textAnimator.ResetText();
 
             string onEndEventKey;
 
@@ -102,25 +107,28 @@ public class StoryPlayer : InitializableMonoBehaviour
             }
             else
             {
+                if (currentEvent.OnEndEvent == null)
+                    break;
+
                 onEndEventKey = currentEvent.OnEndEvent.Key;
             }
 
             currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
         }
 
+        soundManager.StopSoundtrack(FADE_OUT_DURATION);
         yield return StartCoroutine(screenFader.FadeCo(false, FADE_OUT_DURATION));
-
         // TODO: Implement finishing chapter
     }
 
     private IEnumerator FadeNewSpriteInCo()
     {
-        yield return StartCoroutine(imageFader.FadeNewImageCo(currentTransitionData.Sprite, currentTransitionData.FadeInTime));
+        yield return StartCoroutine(imageFader.FadeNewImageCo(currentEventData.Sprite, currentEventData.FadeInTime));
     }
 
     private IEnumerator ShowTextCo()
     {
-        foreach (var text in currentTransitionData.Texts)
+        foreach (var text in currentEventData.Texts)
         {
             yield return new WaitForSeconds(.33f);
 
@@ -130,6 +138,14 @@ public class StoryPlayer : InitializableMonoBehaviour
                 yield return null;
 
             yield return null; // If we don't wait for another frame, the CanContinueEvent() returns true the same frame!
+
+            dialogueArrow.Toggle(true);
+
+            while (!CanContinueEvent())
+                yield return null;
+
+            dialogueArrow.Toggle(false);
+            soundManager.PlaySoundEffect(nextTextSfx);
         }
     }
 }
