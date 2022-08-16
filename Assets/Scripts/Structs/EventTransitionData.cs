@@ -13,4 +13,6 @@ public struct EventTransitionData
     public Soundtrack Track;
     public bool ShouldTrackLoop;
     public bool ShouldEnqueueTrack;
+    public bool StopSoundtrack;
+    public float TrackFadeOutDuration;
 }

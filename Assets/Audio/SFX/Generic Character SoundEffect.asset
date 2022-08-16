@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Generic Character SoundEffect
   m_EditorClassIdentifier: 
   clip: {fileID: 8300000, guid: 29f22eab9b6b30444a017913beb7e5fa, type: 3}
-  defaultVolume: 0.5
+  defaultVolume: 0.33

@@ -7,7 +7,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 {
     [SerializeField] private Story story;
     [Space]
-    [SerializeField] private ImageFader imageFader;
+    [SerializeField] private VisualDisplayer imageFader;
     [SerializeField] private TextAnimator textAnimator;
     [SerializeField] private QuestionDisplayer questionDisplayer;
     [SerializeField] private ScreenFader screenFader;
@@ -78,6 +78,13 @@ public class StoryPlayer : InitializableMonoBehaviour
                     soundManager.EnqueueSoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
                 else
                     soundManager.PlaySoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
+            }
+            else
+            {
+                if (currentEventData.StopSoundtrack)
+                {
+                    soundManager.StopSoundtrack(currentEventData.TrackFadeOutDuration);
+                }
             }
 
             if (currentEventData.Sprite != null)

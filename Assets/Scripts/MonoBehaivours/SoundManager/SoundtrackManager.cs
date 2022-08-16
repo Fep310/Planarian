@@ -10,6 +10,7 @@ public class SoundtrackManager : MonoBehaviour
     private bool shouldQueuedLoop;
 
     private const float FADE_OUT_DURATION = .5f;
+    private Coroutine fadeOutSoundtrackCo;
 
     private void Update()
     {
@@ -52,13 +53,23 @@ public class SoundtrackManager : MonoBehaviour
     public void Stop(float fadeOutTime)
     {
         if (source.isPlaying)
-            StartCoroutine(FadeCurrentTrackOutCo(fadeOutTime));
+        {
+            if (fadeOutSoundtrackCo != null)
+                StopCoroutine(fadeOutSoundtrackCo);
+
+            fadeOutSoundtrackCo = StartCoroutine(FadeCurrentTrackOutCo(fadeOutTime));
+        }
     }
 
     private IEnumerator PlayTrack(Soundtrack track)
     {
         if (source.isPlaying)
-            yield return StartCoroutine(FadeCurrentTrackOutCo());
+        {
+            if (fadeOutSoundtrackCo != null)
+                StopCoroutine(fadeOutSoundtrackCo);
+
+            yield return fadeOutSoundtrackCo = StartCoroutine(FadeCurrentTrackOutCo());
+        }
 
         currentEndTime = Time.time + track.Clip.length;
         source.clip = track.Clip;

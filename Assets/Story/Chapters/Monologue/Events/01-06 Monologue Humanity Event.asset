@@ -27,3 +27,5 @@ MonoBehaviour:
     Track: {fileID: 0}
     ShouldTrackLoop: 0
     ShouldEnqueueTrack: 0
+    StopSoundtrack: 1
+    TrackFadeOutDuration: 8
