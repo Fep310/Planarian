@@ -47,7 +47,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     public override void Init()
     {
-        currentChapter = story.Init();
+        currentChapter = story.NewGame();
         currentEvent = currentChapter.BeginChapter();
         textAnimator.ResetText();
         screenFader.Init();

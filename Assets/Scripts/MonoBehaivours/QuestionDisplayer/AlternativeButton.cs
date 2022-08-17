@@ -35,6 +35,9 @@ public class AlternativeButton : Selectable
 
     public void SetState(bool b)
     {
+        if (!interactable)
+            return;
+
         background.color = b ? Color.white : Color.black;
         textMeshPro.color = b ? Color.black : Color.white;
         textMeshPro.fontStyle = b ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
@@ -46,6 +49,14 @@ public class AlternativeButton : Selectable
 
     public void Choose()
     {
+        if (!interactable)
+            return;
+
         onChoose?.Invoke(alternativeNumber);
+    }
+
+    public void SetInteractable(bool b)
+    {
+        interactable = b;
     }
 }

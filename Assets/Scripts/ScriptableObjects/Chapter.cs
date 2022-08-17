@@ -6,9 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Chapter", menuName = "Story/Chapter/New Chapter")]
 public class Chapter : ScriptableObject
 {
-    [SerializeField] private string key;
-    public string Key { get => key; }
-    
     [SerializeField] private ChapterTrigger onBeginChapter;
     public ChapterTrigger OnBeginChapter { get => onBeginChapter; }
 
