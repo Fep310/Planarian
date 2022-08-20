@@ -67,28 +67,35 @@ public class VisualDisplayer : MonoBehaviour
             fullscreen = false;
         }
 
-        animationSprites = newAnim;
+        animationSprites = new Sprite[newAnim.Length];
+        newAnim.CopyTo(animationSprites, 0);
+        
+        Debug.Log($"newAnim.Length: {newAnim.Length} animationSprites.Length: {animationSprites.Length}");
 
-        backImage.sprite = frontImage.sprite;
-        backImage.color = Color.white;
-        frontImage.sprite = animationSprites[0];
+        Debug.Log($"frontImage.sprite: {frontImage.sprite} frontImage.sprite: {frontImage.sprite}");
+
+        frontImage.sprite = newAnim[0];
         frontImage.color = transparent;
 
         animatingImage = frontImage;
         animationCoroutine = StartCoroutine(AnimationCo(animFps));
 
-        float startTime = Time.time;
-        float endTime = startTime + fadeTime;
-        float t;
-
-        while (Time.time < endTime)
+        yield return StartCoroutine(FadeCo());
+        IEnumerator FadeCo()
         {
-            t = Mathf.InverseLerp(startTime, endTime, Time.time);
-            frontImage.color = new Color(1, 1, 1, t);
-            yield return null;
-        }
+            float startTime = Time.time;
+            float endTime = startTime + fadeTime;
+            float t;
 
-        frontImage.color = Color.white;
+            while (Time.time < endTime)
+            {
+                t = Mathf.InverseLerp(startTime, endTime, Time.time);
+                frontImage.color = new Color(1, 1, 1, t);
+                yield return null;
+            }
+
+            frontImage.color = Color.white;
+        }
     }
 
     private IEnumerator AnimationCo(int fps)
@@ -101,7 +108,7 @@ public class VisualDisplayer : MonoBehaviour
             animatingImage.sprite = animationSprites[i];
             
             i++;
-            if (i > animationSprites.Length)
+            if (i >= animationSprites.Length)
                 i = 0;
 
             yield return wait;

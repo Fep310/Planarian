@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuManager : InitializableMonoBehaviour
 {
@@ -14,6 +15,13 @@ public class MainMenuManager : InitializableMonoBehaviour
 
     public void OnPlay()
     {
+        mainButtons.ForEach(b => b.SetInteractable(false));
+        StartCoroutine(PlayCo());
+        IEnumerator PlayCo()
+        {
+            yield return StartCoroutine(fader.FadeCo(false, 1.5f));
+            yield return SceneManager.LoadSceneAsync(1);
+        }
     }
 
     public void OnOptions()

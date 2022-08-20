@@ -17,7 +17,11 @@ MonoBehaviour:
   onEndEvent: {fileID: 11400000, guid: c7419d8ae6c166d4d9ae31a92706e9f0, type: 2}
   eventConditions: []
   eventOutcome:
-    Sprite: {fileID: 21300000, guid: 6ac9daca573d0f141968e256821cab65, type: 3}
+    Sprite: {fileID: 0}
+    AnimSprites:
+    - {fileID: -1348569310, guid: fa621960a4685614cb9fa6c14896425b, type: 3}
+    - {fileID: 1947336761, guid: fa621960a4685614cb9fa6c14896425b, type: 3}
+    AnimFps: 2
     FadeInTime: 2
     ImageWaitTime: 1
     Texts:
@@ -27,3 +31,5 @@ MonoBehaviour:
     Track: {fileID: 0}
     ShouldTrackLoop: 0
     ShouldEnqueueTrack: 0
+    StopSoundtrack: 0
+    TrackFadeOutDuration: 0

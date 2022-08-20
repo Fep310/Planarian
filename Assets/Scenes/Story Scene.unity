@@ -2248,7 +2248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   story: {fileID: 11400000, guid: ac6ac592911f06341b66b3faf820fad7, type: 2}
-  imageFader: {fileID: 1693250454}
+  visualDisplayer: {fileID: 1693250454}
   textAnimator: {fileID: 557740110}
   questionDisplayer: {fileID: 215078757}
   screenFader: {fileID: 586207887}

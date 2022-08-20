@@ -7,7 +7,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 {
     [SerializeField] private Story story;
     [Space]
-    [SerializeField] private VisualDisplayer imageFader;
+    [SerializeField] private VisualDisplayer visualDisplayer;
     [SerializeField] private TextAnimator textAnimator;
     [SerializeField] private QuestionDisplayer questionDisplayer;
     [SerializeField] private ScreenFader screenFader;
@@ -87,8 +87,11 @@ public class StoryPlayer : InitializableMonoBehaviour
                 }
             }
 
-            if (currentEventData.Sprite != null)
+            if (currentEventData.Sprite != null) { }
                 yield return StartCoroutine(FadeNewSpriteInCo());
+
+            if (currentEventData.AnimSprites != null && currentEventData.AnimSprites.Length > 0)
+                yield return StartCoroutine(FadeNewAnimInCo());
 
             if (currentEventData.ImageWaitTime > 0)
                 yield return new WaitForSeconds(currentEventData.ImageWaitTime);
@@ -130,7 +133,12 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     private IEnumerator FadeNewSpriteInCo()
     {
-        yield return StartCoroutine(imageFader.FadeNewImageCo(currentEventData.Sprite, currentEventData.FadeInTime));
+        yield return StartCoroutine(visualDisplayer.FadeNewImageCo(currentEventData.Sprite, currentEventData.FadeInTime));
+    }
+
+    private IEnumerator FadeNewAnimInCo()
+    {
+        yield return StartCoroutine(visualDisplayer.FadeNewAnimationCo(currentEventData.AnimSprites, currentEventData.FadeInTime, currentEventData.AnimFps));
     }
 
     private IEnumerator ShowTextCo()
