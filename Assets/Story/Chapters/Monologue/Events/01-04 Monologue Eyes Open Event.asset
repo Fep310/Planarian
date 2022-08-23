@@ -22,7 +22,7 @@ MonoBehaviour:
     - {fileID: -985376011, guid: ef0ba0ff1451f974b8737c0d3aa3d30e, type: 3}
     - {fileID: -935752812, guid: ef0ba0ff1451f974b8737c0d3aa3d30e, type: 3}
     AnimFps: 2
-    FadeInTime: 0.5
+    FadeInTime: 1
     ImageWaitTime: 1
     Texts:
     - i am a Gift to humanity

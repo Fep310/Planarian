@@ -87,7 +87,7 @@ public class StoryPlayer : InitializableMonoBehaviour
                 }
             }
 
-            if (currentEventData.Sprite != null) { }
+            if (currentEventData.Sprite != null)
                 yield return StartCoroutine(FadeNewSpriteInCo());
 
             if (currentEventData.AnimSprites != null && currentEventData.AnimSprites.Length > 0)
