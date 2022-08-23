@@ -25,7 +25,7 @@ public class QuestionDisplayer : MonoBehaviour
         for (int i = 0; i < alternatives.Count; i++)
         {
             alternativeButtons[i].gameObject.SetActive(true);
-            alternativeButtons[i].SetText(alternatives[i].label);
+            alternativeButtons[i].SetText(alternatives[i].Label);
         }
     }
 

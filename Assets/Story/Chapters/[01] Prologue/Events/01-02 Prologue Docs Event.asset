@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
+  m_Name: 01-02 Prologue Docs Event
+  m_EditorClassIdentifier: 
+  key: EVENT_docs
+  triggeredBy: {fileID: 11400000, guid: e62280a3d34700b4dab657e38bfa6360, type: 2}
+  onEndEvent: {fileID: 11400000, guid: 925d9a36fecd3d24ba6e4025a135f01e, type: 2}
+  eventConditions: []
+  eventOutcome:
+    Sprite: {fileID: 21300000, guid: f209a3fd8021ee44798c1b79b5ba98c6, type: 3}
+    FadeInTime: 4
+    ImageWaitTime: 2
+    Texts: []
+    Sound: {fileID: 0}
+    Track: {fileID: 0}
+    ShouldTrackLoop: 0
+    ShouldEnqueueTrack: 0

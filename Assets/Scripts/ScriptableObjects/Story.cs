@@ -30,6 +30,10 @@ public class Story : ScriptableObject
 
     public Chapter GetNextChapter() {
         CurrentChapterIndex++;
+        
+        if (chapters.Count < CurrentChapterIndex + 1)
+            return null;
+
         return chapters[CurrentChapterIndex];
     }
 }

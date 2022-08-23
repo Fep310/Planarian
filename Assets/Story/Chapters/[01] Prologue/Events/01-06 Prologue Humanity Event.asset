@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
+  m_Name: 01-06 Prologue Humanity Event
+  m_EditorClassIdentifier: 
+  key: EVENT_humanity
+  triggeredBy: {fileID: 11400000, guid: 53d3ee6765bc939499f291e6bb2f402c, type: 2}
+  onEndEvent: {fileID: 0}
+  eventConditions: []
+  eventOutcome:
+    Sprite: {fileID: 21300000, guid: 7a45499a9c240844382913bfc2216b34, type: 3}
+    FadeInTime: 3
+    ImageWaitTime: 0
+    Texts:
+    - humanity is good
+    - humanity is the reason i exist.
+    Sound: {fileID: 0}
+    Track: {fileID: 0}
+    ShouldTrackLoop: 0
+    ShouldEnqueueTrack: 0
+    StopSoundtrack: 1
+    TrackFadeOutDuration: 8

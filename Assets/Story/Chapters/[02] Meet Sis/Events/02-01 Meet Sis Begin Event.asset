@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
+  m_Name: 02-01 Meet Sis Begin Event
+  m_EditorClassIdentifier: 
+  key: EVENT_begin
+  triggeredBy: {fileID: 11400000, guid: c1b93928b82ec7145845c960fa48e80a, type: 2}
+  onEndEvent: {fileID: 0}
+  eventConditions: []
+  eventOutcome:
+    Sprite: {fileID: 0}
+    AnimSprites: []
+    AnimFps: 0
+    FadeInTime: 0
+    ImageWaitTime: 0
+    Texts: []
+    Sound: {fileID: 0}
+    Track: {fileID: 0}
+    ShouldTrackLoop: 0
+    ShouldEnqueueTrack: 0
+    StopSoundtrack: 0
+    TrackFadeOutDuration: 0

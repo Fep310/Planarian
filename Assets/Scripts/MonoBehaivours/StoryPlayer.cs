@@ -47,88 +47,102 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     public override void Init()
     {
-        currentChapter = story.NewGame();
-        currentEvent = currentChapter.BeginChapter();
         textAnimator.ResetText();
         screenFader.Init();
 
-        StartCoroutine(HandleChapterEventsCo());
+        StartCoroutine(ChapterReadingCo());
     }
 
     private bool CanContinueEvent() => Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0);
 
-    private IEnumerator HandleChapterEventsCo()
+    private IEnumerator ChapterReadingCo()
     {
-        // TODO: Chapter introduction
+        currentChapter = story.NewGame();
+        currentEvent = currentChapter.BeginChapter();
 
-        yield return new WaitForSeconds(.5f);
-
-        yield return StartCoroutine(screenFader.FadeCo(true, FADE_IN_DURATION));
-
-        while (true)
+        while (currentChapter != null)
         {
-            currentEventData = currentEvent.TransitionData;
+            Debug.Log($"Entering chapter \"{currentChapter}\"");
 
-            if (currentEventData.Sound != null)
-                soundManager.PlaySoundEffect(currentEventData.Sound);
+            yield return new WaitForSeconds(.5f);
 
-            if (currentEventData.Track != null)
+            yield return StartCoroutine(screenFader.FadeCo(true, FADE_IN_DURATION));
+
+            while (true)
             {
-                if (currentEventData.ShouldEnqueueTrack)
-                    soundManager.EnqueueSoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
-                else
-                    soundManager.PlaySoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
-            }
-            else
-            {
-                if (currentEventData.StopSoundtrack)
+                Debug.Log($"Entering event \"{currentEvent}\" from \"{currentChapter}\"");
+
+                currentEventData = currentEvent.TransitionData;
+
+                if (currentEventData.Sound != null)
+                    soundManager.PlaySoundEffect(currentEventData.Sound);
+
+                if (currentEventData.Track != null)
                 {
-                    soundManager.StopSoundtrack(currentEventData.TrackFadeOutDuration);
+                    if (currentEventData.ShouldEnqueueTrack)
+                        soundManager.EnqueueSoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
+                    else
+                        soundManager.PlaySoundtrack(currentEventData.Track, currentEventData.ShouldTrackLoop);
                 }
+                else
+                {
+                    if (currentEventData.StopSoundtrack)
+                        soundManager.StopSoundtrack(currentEventData.TrackFadeOutDuration);
+                }
+
+                if (currentEventData.Sprite != null)
+                    yield return StartCoroutine(FadeNewSpriteInCo());
+
+                if (currentEventData.AnimSprites != null && currentEventData.AnimSprites.Length > 0)
+                    yield return StartCoroutine(FadeNewAnimInCo());
+
+                if (currentEventData.ImageWaitTime > 0)
+                    yield return new WaitForSeconds(currentEventData.ImageWaitTime);
+
+                if (currentEventData.Texts != null || currentEventData.Texts.Count > 1)
+                    yield return StartCoroutine(ShowTextCo());
+
+                textAnimator.ResetText();
+
+                string onEndEventKey;
+
+                if (currentEvent is ChapterQuestionEvent questionEvent)
+                {
+                    questionDisplayer.gameObject.SetActive(true);
+                    questionDisplayer.Display(questionEvent.Alternatives);
+
+                    while (!playerChoseAlternativeThisFrame)
+                        yield return null;
+
+                    playerChoseAlternativeThisFrame = false;
+
+                    QuestionAlternative alternativeChosen = questionEvent.Alternatives[alternativeChosenNumber];
+                    onEndEventKey = alternativeChosen.OnChoose.Key;
+
+                    if (alternativeChosen.ChangeStoryValue)
+                        alternativeChosen.SetNewValue();
+                }
+                else
+                {
+                    if (currentEvent.OnEndEvent == null)
+                    {
+                        currentEvent = null;
+                        break;
+                    }
+
+                    onEndEventKey = currentEvent.OnEndEvent.Key;
+                }
+
+                currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
             }
 
-            if (currentEventData.Sprite != null)
-                yield return StartCoroutine(FadeNewSpriteInCo());
+            soundManager.StopSoundtrack(FADE_OUT_DURATION);
+            yield return StartCoroutine(screenFader.FadeCo(false, FADE_OUT_DURATION));
 
-            if (currentEventData.AnimSprites != null && currentEventData.AnimSprites.Length > 0)
-                yield return StartCoroutine(FadeNewAnimInCo());
+            currentChapter = story.GetNextChapter();
 
-            if (currentEventData.ImageWaitTime > 0)
-                yield return new WaitForSeconds(currentEventData.ImageWaitTime);
-
-            if (currentEventData.Texts != null || currentEventData.Texts.Count > 1)
-                yield return StartCoroutine(ShowTextCo());
-
-            textAnimator.ResetText();
-
-            string onEndEventKey;
-
-            if (currentEvent is ChapterQuestionEvent questionEvent)
-            {
-                questionDisplayer.gameObject.SetActive(true);
-                questionDisplayer.Display(questionEvent.Alternatives);
-
-                while (!playerChoseAlternativeThisFrame)
-                    yield return null;
-
-                playerChoseAlternativeThisFrame = false;
-
-                onEndEventKey = questionEvent.Alternatives[alternativeChosenNumber].onChoose.Key;
-            }
-            else
-            {
-                if (currentEvent.OnEndEvent == null)
-                    break;
-
-                onEndEventKey = currentEvent.OnEndEvent.Key;
-            }
-
-            currentEvent = currentChapter.GetChapterEvent(onEndEventKey);
+            // TODO: Implement finishing chapter
         }
-
-        soundManager.StopSoundtrack(FADE_OUT_DURATION);
-        yield return StartCoroutine(screenFader.FadeCo(false, FADE_OUT_DURATION));
-        // TODO: Implement finishing chapter
     }
 
     private IEnumerator FadeNewSpriteInCo()

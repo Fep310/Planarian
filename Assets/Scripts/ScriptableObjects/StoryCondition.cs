@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Chapter", menuName = "Story/New Condition")]
+[CreateAssetMenu(fileName = "New Condition", menuName = "Story/New Condition")]
 public class StoryCondition : ScriptableObject
 {
     [SerializeField] private string key;
@@ -20,21 +20,13 @@ public class StoryCondition : ScriptableObject
 
     public bool IsConditionMet() {
 
-        switch (conditionOperator) {
-
-            case ConditionType.EQUAL:
-                return valueRef.Value == neededValue;
-
-            case ConditionType.NOT_EQUAL:
-                return valueRef.Value != neededValue;
-
-            case ConditionType.GREATER_THAN:
-                return valueRef.Value > neededValue;
-
-            case ConditionType.LESS_THAN:
-                return valueRef.Value < neededValue;
-        }
-
-        return false;
+        return conditionOperator switch
+        {
+            ConditionType.EQUAL => valueRef.Value == neededValue,
+            ConditionType.NOT_EQUAL => valueRef.Value != neededValue,
+            ConditionType.GREATER_THAN => valueRef.Value > neededValue,
+            ConditionType.LESS_THAN => valueRef.Value < neededValue,
+            _ => false,
+        };
     }
 }

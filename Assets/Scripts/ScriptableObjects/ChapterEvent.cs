@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New ChapterEvent", menuName = "Story/Chapter/New Event")]
+[CreateAssetMenu(fileName = "New Event", menuName = "Story/Chapter/New Event")]
 public class ChapterEvent : ScriptableObject
 {
     [SerializeField] private string key;
