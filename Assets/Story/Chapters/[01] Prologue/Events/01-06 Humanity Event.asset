@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
-  m_Name: 01-06 Prologue Humanity Event
+  m_Name: 01-06 Humanity Event
   m_EditorClassIdentifier: 
   key: EVENT_humanity
   triggeredBy: {fileID: 11400000, guid: 53d3ee6765bc939499f291e6bb2f402c, type: 2}

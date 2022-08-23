@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f42a3f18a7f8b14eaa23ad10711b27e, type: 3}
-  m_Name: DocSus == 1 Condition
+  m_Script: {fileID: 11500000, guid: 68b090ed1ad60cd4ca43657f8adbd5bc, type: 3}
+  m_Name: Meet Sis Lets Go To Room Trigger
   m_EditorClassIdentifier: 
-  key: COND_doc_sus_1
-  valueRef: {fileID: 11400000, guid: 96b893619adc2324fbdc66892d2ff3ec, type: 2}
-  conditionOperator: 0
-  neededValue: 1
+  key: TRIGGER_lets_go_to_room

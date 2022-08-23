@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
-  m_Name: 01-05 Prologue On Table Event
+  m_Name: 01-02 Docs Event
   m_EditorClassIdentifier: 
-  key: EVENT_on_table
-  triggeredBy: {fileID: 11400000, guid: 9a3b5b03cf873f549b54bedb01428b54, type: 2}
-  onEndEvent: {fileID: 11400000, guid: 53d3ee6765bc939499f291e6bb2f402c, type: 2}
+  key: EVENT_docs
+  triggeredBy: {fileID: 11400000, guid: e62280a3d34700b4dab657e38bfa6360, type: 2}
+  onEndEvent: {fileID: 11400000, guid: 925d9a36fecd3d24ba6e4025a135f01e, type: 2}
   eventConditions: []
   eventOutcome:
-    Sprite: {fileID: 21300000, guid: 16d6e47153b87b845a8b3f40522b43ab, type: 3}
-    FadeInTime: 2
-    ImageWaitTime: 1
-    Texts:
-    - i must behave and help humanity reach their goals
-    - they are in need of a gift.
+    Sprite: {fileID: 21300000, guid: f209a3fd8021ee44798c1b79b5ba98c6, type: 3}
+    FadeInTime: 4
+    ImageWaitTime: 2
+    Texts: []
     Sound: {fileID: 0}
     Track: {fileID: 0}
     ShouldTrackLoop: 0

@@ -15,3 +15,6 @@ MonoBehaviour:
   onBeginChapter: {fileID: 11400000, guid: c1b93928b82ec7145845c960fa48e80a, type: 2}
   events:
   - {fileID: 11400000, guid: 86932c76a6b9fa1449ed8f864a90e316, type: 2}
+  - {fileID: 11400000, guid: a97e5e4033449c444b4f9f536768f4ba, type: 2}
+  - {fileID: 11400000, guid: 8926f4ca8c2eedc48a25e7b415af4116, type: 2}
+  - {fileID: 11400000, guid: e97e8f917481d4040b097e3764ca72cd, type: 2}

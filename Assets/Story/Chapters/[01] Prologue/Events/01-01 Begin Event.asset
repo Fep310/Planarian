@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
-  m_Name: 02-01 Meet Sis Begin Event
+  m_Name: 01-01 Begin Event
   m_EditorClassIdentifier: 
   key: EVENT_begin
-  triggeredBy: {fileID: 11400000, guid: c1b93928b82ec7145845c960fa48e80a, type: 2}
-  onEndEvent: {fileID: 0}
+  triggeredBy: {fileID: 11400000, guid: 7f0bcc840a4683c4a924e088dce8b96b, type: 2}
+  onEndEvent: {fileID: 11400000, guid: e62280a3d34700b4dab657e38bfa6360, type: 2}
   eventConditions: []
   eventOutcome:
-    Sprite: {fileID: 0}
+    Sprite: {fileID: 21300000, guid: cfa98a19dfe4a8d4388232b5873fadf3, type: 3}
     AnimSprites: []
     AnimFps: 0
-    FadeInTime: 0
-    ImageWaitTime: 0
+    FadeInTime: 4
+    ImageWaitTime: 2
     Texts: []
     Sound: {fileID: 0}
-    Track: {fileID: 0}
-    ShouldTrackLoop: 0
+    Track: {fileID: 11400000, guid: 6b0d49e6ceb4187429fb260808dde72f, type: 2}
+    ShouldTrackLoop: 1
     ShouldEnqueueTrack: 0
     StopSoundtrack: 0
     TrackFadeOutDuration: 0

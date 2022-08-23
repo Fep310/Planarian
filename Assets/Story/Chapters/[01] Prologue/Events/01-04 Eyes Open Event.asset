@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 428b52ed6a288eb4eb13d7a468760153, type: 3}
-  m_Name: 01-03 Prologue Eyes Event
+  m_Name: 01-04 Eyes Open Event
   m_EditorClassIdentifier: 
-  key: EVENT_eyes
-  triggeredBy: {fileID: 11400000, guid: 925d9a36fecd3d24ba6e4025a135f01e, type: 2}
-  onEndEvent: {fileID: 11400000, guid: c7419d8ae6c166d4d9ae31a92706e9f0, type: 2}
+  key: EVENT_eyes_open
+  triggeredBy: {fileID: 11400000, guid: c7419d8ae6c166d4d9ae31a92706e9f0, type: 2}
+  onEndEvent: {fileID: 11400000, guid: 9a3b5b03cf873f549b54bedb01428b54, type: 2}
   eventConditions: []
   eventOutcome:
     Sprite: {fileID: 0}
     AnimSprites:
-    - {fileID: -1348569310, guid: fa621960a4685614cb9fa6c14896425b, type: 3}
-    - {fileID: 1947336761, guid: fa621960a4685614cb9fa6c14896425b, type: 3}
+    - {fileID: -985376011, guid: ef0ba0ff1451f974b8737c0d3aa3d30e, type: 3}
+    - {fileID: -935752812, guid: ef0ba0ff1451f974b8737c0d3aa3d30e, type: 3}
     AnimFps: 2
-    FadeInTime: 2
+    FadeInTime: 1
     ImageWaitTime: 1
     Texts:
-    - i am alive
-    - i am plan-055.
+    - i am a Gift to humanity
+    - as Life is a gift to me.
     Sound: {fileID: 0}
     Track: {fileID: 0}
     ShouldTrackLoop: 0

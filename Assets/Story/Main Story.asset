@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: Main Story
   m_EditorClassIdentifier: 
   chapters:
-  - {fileID: 11400000, guid: 94e61c0b75f9c6349a1696cd73a13978, type: 2}
-  values: []
+  - {fileID: 11400000, guid: 93ac619855f49264395d608d26923081, type: 2}
+  CurrentChapterIndex: 0
+  values:
+  - {fileID: 11400000, guid: 96b893619adc2324fbdc66892d2ff3ec, type: 2}
+  - {fileID: 11400000, guid: ac3674332df1e8a44a99447766e7ef15, type: 2}
+  - {fileID: 11400000, guid: bfe632725fb81a74280e711c1be3de36, type: 2}
