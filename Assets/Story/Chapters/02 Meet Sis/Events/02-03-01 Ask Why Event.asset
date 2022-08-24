@@ -23,10 +23,10 @@ MonoBehaviour:
     FadeInTime: 0
     ImageWaitTime: 0
     Texts:
-    - 'doc: ...'
-    - 'doc: crap..'
-    - 'doc: *ahem*'
-    - 'doc: Come p55, We must Go to your Room.'
+    - ':doc: ...'
+    - ':doc: crap..'
+    - ':doc: *ahem*'
+    - ':doc: Come p55, We must Go to your Room.'
     Sound: {fileID: 0}
     Track: {fileID: 0}
     ShouldTrackLoop: 0

@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "New Condition", menuName = "Story/New Condition")]
-public class StoryCondition : ScriptableObject
+public struct StoryCondition
 {
     [SerializeField] private string key;
     public string Key { get => key; }
@@ -18,7 +15,8 @@ public class StoryCondition : ScriptableObject
     [SerializeField] private int neededValue;
     public int NeededValue { get => neededValue; }
 
-    public bool IsConditionMet() {
+    public bool IsConditionMet()
+    {
 
         return conditionOperator switch
         {

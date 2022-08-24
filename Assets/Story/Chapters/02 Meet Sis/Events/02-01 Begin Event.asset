@@ -23,7 +23,7 @@ MonoBehaviour:
     FadeInTime: 0
     ImageWaitTime: 0
     Texts:
-    - 'doc: come p55, let''s go to your room'
+    - ':doc: come p55, let''s go to your room'
     Sound: {fileID: 0}
     Track: {fileID: 0}
     ShouldTrackLoop: 0
