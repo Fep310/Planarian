@@ -14,6 +14,8 @@ public class TextAnimator : MonoBehaviour
     private string newText;
     private Coroutine animatingCoroutine;
     private Color transparent = new Color(1, 1, 1, 0);
+    private WaitForSeconds waitInterval;
+    private WaitForSeconds colenWaitInterval;
 
     private void Update()
     {
@@ -21,7 +23,7 @@ public class TextAnimator : MonoBehaviour
             Skip();
     }
 
-    public void ResetText()
+    public void Init()
     {
         textComp.text = string.Empty;
     }
@@ -30,17 +32,43 @@ public class TextAnimator : MonoBehaviour
     {
         this.newText = newText;
         isAnimating = true;
+
+        if (waitInterval == null || colenWaitInterval == null)
+        {
+            waitInterval = new WaitForSeconds(charIntervalInSec);
+            colenWaitInterval = new WaitForSeconds(charIntervalInSec * 2);
+        }
+
         animatingCoroutine = StartCoroutine(AnimateTextCo(charIntervalInSec));
     }
 
     public IEnumerator AnimateTextCo(float charIntervalInSec)
     {
-        var waitInterval = new WaitForSeconds(charIntervalInSec);
+        bool insideColon = false;
 
         textComp.text = string.Empty;
 
         foreach (var c in newText)
         {
+            if (insideColon)
+            {
+                textComp.text += c;
+
+                if (c == ':')
+                {
+                    insideColon = false;
+                    yield return colenWaitInterval;
+                }
+
+                continue;
+            }
+
+            if (c == ':')
+            {
+                insideColon = true;
+                continue;
+            }
+
             yield return waitInterval;
 
             if (char.IsLetterOrDigit(c))
