@@ -15,6 +15,8 @@ public class StoryPlayer : InitializableMonoBehaviour
     [Space]
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private SoundEffect nextTextSfx;
+    [Space]
+    [SerializeField] private bool debugLogs;
 
     [HideInInspector] public bool playerChoseAlternativeThisFrame;
     [HideInInspector] public int alternativeChosenNumber;
@@ -47,7 +49,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 
     public override void Init()
     {
-        textAnimator.ResetText();
+        textAnimator.Init();
         screenFader.Init();
 
         StartCoroutine(ChapterReadingCo());
@@ -62,7 +64,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 
         while (currentChapter != null)
         {
-            Debug.Log($"Entering chapter \"{currentChapter}\"");
+            Log($"Entering chapter \"{currentChapter}\"");
 
             yield return new WaitForSeconds(.5f);
 
@@ -70,7 +72,7 @@ public class StoryPlayer : InitializableMonoBehaviour
 
             while (true)
             {
-                Debug.Log($"Entering event \"{currentEvent}\" from \"{currentChapter}\"");
+                Log($"Entering event \"{currentEvent}\" from \"{currentChapter}\"");
 
                 currentEventData = currentEvent.TransitionData;
 
@@ -102,7 +104,7 @@ public class StoryPlayer : InitializableMonoBehaviour
                 if (currentEventData.Texts != null || currentEventData.Texts.Count > 1)
                     yield return StartCoroutine(ShowTextCo());
 
-                textAnimator.ResetText();
+                textAnimator.Init();
 
                 string onEndEventKey;
 
@@ -176,5 +178,11 @@ public class StoryPlayer : InitializableMonoBehaviour
             dialogueArrow.Toggle(false);
             soundManager.PlaySoundEffect(nextTextSfx);
         }
+    }
+
+    private void Log(string msg)
+    {
+        if (debugLogs)
+            Debug.Log(msg);
     }
 }
